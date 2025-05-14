@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Roomies - Find Your Perfect Roommate</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #5264AE;
+        }
+        
+        .logo span {
+            color: #FF6B6B;
+        }
+        
+        .nav-links a {
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #FF6B6B;
+        }
+        
+        .cta-button {
+            background-color: #5264AE;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3f4e8a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 30px 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .hero-cta {
+            background-color: #FF6B6B;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background-color: #ff5252;
+        }
+        
+        .hero-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            border: 2px solid white;
+            transition: background-color 0.3s;
+        }
+        
+        .hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            background-color: #f0f4ff;
+            color: #5264AE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 30px;
+            background-color: #f0f4ff;
+        }
+        
+        .steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .step {
+            width: 30%;
+            text-align: center;
+            padding: 20px;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            background-color: #5264AE;
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .author-info {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            padding: 80px 30px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #ff8e8e 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-main {
+            background-color: white;
+            color: #FF6B6B;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-main:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 30px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: #FF6B6B;
+        }
+        
+        .footer-description {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #FF6B6B;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #FF6B6B;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .step {
+                width: 100%;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons a {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Find My <span>Roomies</span></div>
+            <div class="nav-links">
+                <a href="#">How It Works</a>
+                <a href="#">Features</a>
+                <a href="#">Testimonials</a>
+                <a href="#">Login</a>
+                <a href="#" class="cta-button">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Perfect Roommate</h1>
+            <p>Match with compatible roommates based on lifestyle preferences, habits, and personality to create your ideal living situation.</p>
+            <div class="hero-buttons">
+                <a href="#" class="hero-cta">Get Started</a>
+                <a href="#" class="hero-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">Why Choose Find My Roomies?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Smart Matching</h3>
+                <p>Our algorithm matches you based on sleeping habits, cleanliness, food preferences, movie tastes, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Detailed Profiles</h3>
+                <p>Create comprehensive profiles that showcase your lifestyle, preferences, and what you're looking for in a roommate.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Safe Communication</h3>
+                <p>Chat securely with potential matches through our platform before deciding to meet in person.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Location Based</h3>
+                <p>Find roommates in your preferred neighborhoods or near your workplace/campus.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Verified Users</h3>
+                <p>All users go through our verification process for a safer, more reliable community.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Roommate Agreements</h3>
+                <p>Access templates for creating clear roommate agreements once you've found your match.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create Your Profile</h3>
+                <p>Sign up and build your detailed profile with your preferences, habits, and lifestyle choices.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Get Matched</h3>
+                <p>Our algorithm suggests compatible roommates based on your preferences and location needs.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Connect & Meet</h3>
+                <p>Chat with your matches, meet up if you both agree, and find your perfect living situation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Success Stories</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I found my roommate Sarah through Find My Roomies and we've been living together for over a year now. We have the same sleep schedule and love cooking together!"</p>
+                <div class="testimonial-author">
+                    <div class="author-image"></div>
+                    <div>
+                        <div class="author-name">Jessica K.</div>
+                        <div class="author-info">Student, Boston</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As someone who works nights, it was hard to find compatible roommates until I used Find My Roomies. Now I live with two other night shift workers!"</p>
+                <div class="testimonial-author">
+                    <div class="author-image"></div>
+                    <div>
+                        <div class="author-name">Michael T.</div>
+                        <div class="author-info">Nurse, Chicago</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I was moving to a new city and worried about finding a good living situation. Find My Roomies matched me with someone who has become not just a roommate but a friend."</p>
+                <div class="testimonial-author">
+                    <div class="author-image"></div>
+                    <div>
+                        <div class="author-name">Aisha M.</div>
+                        <div class="author-info">Software Developer, Austin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Find Your Perfect Roommate?</h2>
+            <p>Join thousands of people who have found compatible roommates based on lifestyle, preferences, and personality.</p>
+            <a href="#" class="cta-main">Create Your Profile</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">Find My <span>Roomies</span></div>
+                <p class="footer-description">Making roommate matching smarter, safer, and more compatible for everyone.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety Tips</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Community Guidelines</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Find My Roomies. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
